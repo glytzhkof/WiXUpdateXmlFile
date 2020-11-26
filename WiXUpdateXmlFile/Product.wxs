@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?define MyVersion = "1.0.0" ?>
+<?define MyUpgradeCode = "{6944BD85-55F7-4456-B92F-DE08DE26AD29}" ?> <!-- Use a NEW GUID here, do not go live with this one -->
+
+<!-- Sample Usage: -->
+
+<!-- 1. Compile an MSI, add "1" to the end of the file name. -->
+<!-- 2. Set a new version above in MyVersion preprocessor variable. For example 2.0.0 -->
+<!-- 3. Update the below WiX XML to set a new value. For example change 7.7.7 to 7.7.8 -->
+<!-- 4. Compile a second MSI, add "2" to the end of the file name. -->
+<!-- 5. Now install your first MSI, inspect the installed app.config file. -->
+<!-- 6. Install the second MSI and inspect the installed app.config file for updates. -->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="*" Name="WiXUpdateXmlFile" Language="1033" Manufacturer="-" UpgradeCode="$(var.MyUpgradeCode)" Version="$(var.MyVersion)">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="WiXUpdateXmlFile" Level="1" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="WiXUpdateXmlFile">
+
+          <!-- Set app.config permanent and never overwrite to yes -->
+          <Component Feature="ProductFeature" NeverOverwrite="yes" Permanent="yes">
+            <File Source="app.config" />
+          </Component>
+
+          <!-- The custom WiX stuff - modify existing XML file -->
+          
+          <!-- Use a NEW GUID here, do not go live with this one -->
+          <Component Id="XmlFileUpdate" Guid="{00000000-0000-0000-0000-7405EED51B57}" Feature='ProductFeature'>
+
+            <!--Create New Element-->
+            <util:XmlFile Id='XmlSettings1' File='[INSTALLFOLDER]app.config' Action='createElement'
+                          Name='MyConfig' ElementPath='//configuration' Sequence='1' />
+
+            <!--Set New Value-->
+            <util:XmlFile Id='XmlSettings2' File='[INSTALLFOLDER]app.config' Action='setValue'
+                         Name='newVersion' Value='6.6.8' ElementPath='//configuration/MyConfig' Sequence='2' />
+
+            <!--Set New Value-->
+            <util:XmlFile Id='XmlSettings3' File='[INSTALLFOLDER]app.config' Action='setValue'
+                          Name='Server' Value='Pusevov' ElementPath='//configuration/MyConfig' Sequence='3' />
+
+            <!--Update Existing Value, Existing Element-->
+            <util:XmlFile Id='XmlSettings4' File='[INSTALLFOLDER]app.config'
+              Action='setValue' Name='newVersion' Value='7.7.7' ElementPath='//configuration/ExistingConfig/bindingRedirect' Sequence='4' />
+
+            <CreateFolder />
+          </Component>
+
+        </Directory>
+      </Directory>
+    </Directory>
+
+  </Product>
+</Wix>

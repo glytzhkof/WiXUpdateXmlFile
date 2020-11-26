@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WiXUpdateXmlFile", "WiXUpdateXmlFile\WiXUpdateXmlFile.wixproj", "{E28E46B3-BD11-4C72-A033-92E9A65EC5B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E28E46B3-BD11-4C72-A033-92E9A65EC5B7}.Debug|x86.ActiveCfg = Debug|x86
+		{E28E46B3-BD11-4C72-A033-92E9A65EC5B7}.Debug|x86.Build.0 = Debug|x86
+		{E28E46B3-BD11-4C72-A033-92E9A65EC5B7}.Release|x86.ActiveCfg = Release|x86
+		{E28E46B3-BD11-4C72-A033-92E9A65EC5B7}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1C7EC87-C84C-4EE7-8F91-FD95D4DA8EFB}
+	EndGlobalSection
+EndGlobal
