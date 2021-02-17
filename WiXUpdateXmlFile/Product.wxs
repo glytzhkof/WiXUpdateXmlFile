@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?define MyVersion = "1.0.0" ?>
-<?define MyUpgradeCode = "{6944BD85-55F7-4456-B92F-DE08DE26AD29}" ?> <!-- Use a NEW GUID here, do not go live with this one -->
+
+<!-- TODO: Create a GUID using this link: https://www.guidgenerator.com/ and paste into the above UpgradeCode attribute -->
+<?define MyUpgradeCode = "PUT-GUID-HERE" ?>
 
 <!-- Sample Usage: -->
 
